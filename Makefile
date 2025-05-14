@@ -22,21 +22,22 @@ else
 endif
 
 # Flags for mach-o linker
-LDFLAGS := -static \
-           -segalign 0x1000 \
-           -segaddr __TEXT 0x00400000 \
-           -sectalign __TEXT __text 0x1000 \
-           -sectalign __DATA __common 0x1000 \
-           -sectalign __DATA __bss 0x1000 \
+LDFLAGS := 	-static \
+			-e _start \
+           	-segalign 0x1000 \
+           	-segaddr __TEXT 0x00400000 \
+           	-sectalign __TEXT __text 0x1000 \
+           	-sectalign __DATA __common 0x1000 \
+           	-sectalign __DATA __bss 0x1000 \
 
 DEFINES := -DDEBUG
 
 CFLAGS := -Wall -nostdlib -fno-stack-protector -fno-builtin -O0 --target=$(TARGET) -Iinclude $(DEFINES)
 
-OBJS := start.o baselibc_string.o csmwrapple.o tinyprintf.o video_cons.o
+OBJS := start.o baselibc_string.o csmwrapple.o tinyprintf.o video_cons.o e820.o acpi.o x86thunk.o Thunk16.o
 
 %.o: %.nasm
-	$(NASM) -fmacho32 $< -o $@
+	$(NASM) -fmacho32 --prefix _ $< -o $@
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 mach_kernel: $(OBJS)

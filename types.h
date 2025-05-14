@@ -14,9 +14,12 @@ typedef int                 int32_t;
 typedef unsigned int        uint32_t;
 typedef long long           int64_t;
 typedef unsigned long long  uint64_t;
-
+typedef _Bool               boolean_t;
 typedef __SIZE_TYPE__       size_t;
 typedef __UINTPTR_TYPE__    uintptr_t;
+
+typedef unsigned short      wchar_t;
+typedef uint32_t            uintn_t;
 
 #define true                1
 #define false               0
@@ -31,6 +34,8 @@ typedef int32_t             INT32;
 typedef uint32_t            UINT32;
 typedef int64_t             INT64;
 typedef uint64_t            UINT64;
+typedef uint32_t            UINTN;
+typedef void                VOID;
+typedef boolean_t           BOOLEAN;
 
-typedef _Bool               bool_t;
 #define noreturn            _Noreturn

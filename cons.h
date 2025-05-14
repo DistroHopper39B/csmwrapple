@@ -8,7 +8,7 @@
 
 typedef struct _linear_framebuffer_t
 {
-    bool_t      enabled;
+    boolean_t      enabled;
 
     uint64_t    base;
     uint64_t    size;
@@ -50,5 +50,5 @@ typedef struct _console_priv_t
     (((color) & 0xFF) << fb.reserved_shift)
 
 /* Functions */
-extern bool_t cons_init(void *video_params, uint32_t fg_color, uint32_t bg_color);
+extern boolean_t cons_init(void *video_params, uint32_t fg_color, uint32_t bg_color);
 extern void cons_clear_screen(uint32_t color);

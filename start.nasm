@@ -4,7 +4,7 @@
 ; SPDX-License-Identifier: MIT
 ;
 
-extern _csmwrapple_init
+extern csmwrapple_init
 
 SECTION .text
 global start
@@ -13,6 +13,6 @@ start:
     ; Push bootArgs pointer to the stack.
     push eax
     ; Call C entry point
-    call _csmwrapple_init
+    call csmwrapple_init
     ; Halt the CPU
     hlt

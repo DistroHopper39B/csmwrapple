@@ -113,7 +113,7 @@ void cons_clear_screen(uint32_t color)
 // Platform specific video initialization code.
 // This must be implemented differently on every platform this is ported to.
 // After this, we will have a working printf.
-bool_t cons_init(void *video_params, uint32_t fg_color, uint32_t bg_color)
+boolean_t cons_init(void *video_params, uint32_t fg_color, uint32_t bg_color)
 {
     if (!video_params)
         return false;
@@ -159,4 +159,17 @@ bool_t cons_init(void *video_params, uint32_t fg_color, uint32_t bg_color)
     fb.enabled = true;
 
     return true;
+}
+
+int csmwrap_video_init(struct csmwrap_priv *priv)
+{
+    struct csm_vga_table *vgabios = priv->vga_table;
+
+    vgabios->physical_address   = fb.base;
+    vgabios->x_resolution       = fb.width;
+    vgabios->y_resolution       = fb.height;
+    vgabios->bbp                = fb.depth;
+    vgabios->bytes_per_line     = fb.pitch;
+
+    return 0;
 }
