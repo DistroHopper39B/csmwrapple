@@ -234,7 +234,6 @@ noreturn void csmwrapple_init(mach_boot_args_t *ba)
     Regs.X.AX = Legacy16InitializeYourself;
     Regs.X.ES = EFI_SEGMENT(&priv.low_stub->init_table);
     Regs.X.BX = EFI_OFFSET(&priv.low_stub->init_table);
-    printf("here\n");
 
     LegacyBiosFarCall86(priv.csm_efi_table->Compatibility16CallSegment,
                         priv.csm_efi_table->Compatibility16CallOffset,
@@ -242,7 +241,6 @@ noreturn void csmwrapple_init(mach_boot_args_t *ba)
                         NULL,
                         0);
 
-    printf("here\n");
     memset(&Regs, 0, sizeof(EFI_IA32_REGISTER_SET));
     Regs.X.AX = Legacy16DispatchOprom;
     Regs.X.ES = EFI_SEGMENT(&priv.low_stub->vga_oprom_table);
